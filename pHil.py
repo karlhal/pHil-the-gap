@@ -2,8 +2,8 @@
 @file demo_PH_read.py
 Modified version of the original demo_PH_read.py from DFRobot
 @author Karl Hallström (karlhal@chalmers.se)
-@version  Your Version
-@date  Your Date
+@version  1.1
+@date  2023-05-18
 @copyright Copyright (c) 2023 pHil The Gap - Chalmers tekniska högskola (philthegap2023.com)
 @license Creative Commons Attribution 4.0 International (CC BY 4.0)
 This software is released under the Creative Commons Attribution 4.0 International license. 
@@ -89,9 +89,10 @@ def measurement():
         PH = linear_func(PH)
         print("PH:%.2f Time:%s" % (PH, datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
 
-        with open("data_log.txt", "a") as file:
-            file.write(f"PH:%.2f Coordinates: {dive_coordinates} Time:%s\n" % (PH, datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+        with open("data_log.csv", "a") as file:
+            file.write(f"{PH},{dive_coordinates},{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         time.sleep(1.0)
+
 
 def main():
     global dive_coordinates  # Declare it as global here before you assign any value to it.
